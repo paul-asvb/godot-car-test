@@ -16,10 +16,6 @@ const STEER_SPEED = 3.0
 const TIRE_GRIP = 0.8
 const TIRE_MASS = 1.0
 
-# Anti-roll stability
-const ANTI_ROLL_STRENGTH = 50.0
-const ANGULAR_DAMPING_MULTIPLIER = 3.0
-
 var current_steer = 0.0
 
 @onready var wheels = [
@@ -87,20 +83,21 @@ func _physics_process(delta):
 				var drive_force = forward_dir * throttle * ENGINE_FORCE
 				apply_force(drive_force, wheel_pos - global_position)
 	
-	# Anti-roll stabilization
-	apply_anti_roll()
 	
 	# Dampen roll and pitch angular velocity
 	var local_angular = global_transform.basis.inverse() * angular_velocity
-	local_angular.x *= 1.0 - (ANGULAR_DAMPING_MULTIPLIER * delta)
-	local_angular.z *= 1.0 - (ANGULAR_DAMPING_MULTIPLIER * delta)
 	angular_velocity = global_transform.basis * local_angular
+	
+	# Reset position if car goes out of bounds
+	var boundary = 95.0
+	if abs(global_position.x) > boundary or abs(global_position.z) > boundary or global_position.y < -5:
+		reset_position()
 
-func apply_anti_roll():
-	var up = global_transform.basis.y
-	var target_up = Vector3.UP
-	var correction = up.cross(target_up)
-	apply_torque(correction * ANTI_ROLL_STRENGTH)
+func reset_position():
+	global_position = Vector3(0, 2, 0)
+	global_rotation = Vector3.ZERO
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
 
 func get_point_velocity(point: Vector3) -> Vector3:
 	return linear_velocity + angular_velocity.cross(point - global_position)
