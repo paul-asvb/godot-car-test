@@ -103,9 +103,11 @@ func _physics_process(delta):
 	var local_angular = global_transform.basis.inverse() * angular_velocity
 	angular_velocity = global_transform.basis * local_angular
 	
-	# Reset position if car goes out of bounds
-	var boundary = 95.0
-	if abs(global_position.x) > boundary or abs(global_position.z) > boundary or global_position.y < -5:
+	# Reset position if car goes out of bounds or flips over
+	var boundary_x = 28.0
+	var boundary_z = 38.0
+	var up_dot = global_transform.basis.y.dot(Vector3.UP)
+	if abs(global_position.x) > boundary_x or abs(global_position.z) > boundary_z or global_position.y < -5 or up_dot < 0.3:
 		reset_position()
 
 func reset_position():

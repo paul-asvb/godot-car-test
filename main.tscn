@@ -18,10 +18,65 @@ uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 material = SubResource("StandardMaterial3D_ground")
-size = Vector2(200, 200)
+size = Vector2(60, 80)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
-size = Vector3(200, 1, 200)
+size = Vector3(60, 1, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+size = Vector3(1, 3, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall"]
+size = Vector3(1, 3, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_short"]
+size = Vector3(60, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_short"]
+size = Vector3(60, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
+albedo_color = Color(0.3, 0.3, 0.35, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_small_ramp"]
+size = Vector3(3, 0.8, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_small_ramp"]
+points = PackedVector3Array(-1.5, -0.4, -2, 1.5, -0.4, -2, -1.5, -0.4, 2, 1.5, -0.4, 2, 0, 0.4, -2, 0, 0.4, 2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_small_boulder"]
+radius = 0.6
+height = 1.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_small_boulder"]
+radius = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pillar"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pillar"]
+radius = 0.4
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pillar"]
+albedo_color = Color(0.7, 0.5, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bump"]
+size = Vector3(4, 0.3, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bump"]
+size = Vector3(4, 0.3, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bump"]
+albedo_color = Color(0.8, 0.7, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_small_moving"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_small_moving"]
+size = Vector3(1.5, 1.5, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_car"]
 size = Vector3(1.6, 0.5, 2.5)
@@ -106,285 +161,284 @@ shape = SubResource("BoxShape3D_car")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
 
 [node name="WheelFL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -1.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.25, -1.0)
 target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshFL" type="MeshInstance3D" parent="Car/WheelFL"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelFR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -1.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.25, -1.0)
 target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshFR" type="MeshInstance3D" parent="Car/WheelFR"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelRL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, 1.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.25, 1.0)
 target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshRL" type="MeshInstance3D" parent="Car/WheelRL"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelRR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 1.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.25, 1.0)
 target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshRR" type="MeshInstance3D" parent="Car/WheelRR"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
-[node name="Obstacles" type="Node3D" parent="."]
+[node name="Walls" type="Node3D" parent="."]
 
-[node name="Obstacle1" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -20)
+[node name="WallLeft" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle1"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/WallLeft"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle1"]
-shape = SubResource("BoxShape3D_obstacle")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallLeft"]
+shape = SubResource("BoxShape3D_wall")
 
-[node name="Obstacle2" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 10)
+[node name="WallRight" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle2"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/WallRight"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle2"]
-shape = SubResource("BoxShape3D_obstacle")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallRight"]
+shape = SubResource("BoxShape3D_wall")
 
-[node name="Obstacle3" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 35)
+[node name="WallFront" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -40)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle3"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/WallFront"]
+mesh = SubResource("BoxMesh_wall_short")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle3"]
-shape = SubResource("BoxShape3D_obstacle")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallFront"]
+shape = SubResource("BoxShape3D_wall_short")
 
-[node name="Obstacle4" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -30)
+[node name="WallBack" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 40)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle4"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/WallBack"]
+mesh = SubResource("BoxMesh_wall_short")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle4"]
-shape = SubResource("BoxShape3D_obstacle")
-
-[node name="Obstacle5" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, -50)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle5"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle5"]
-shape = SubResource("BoxShape3D_obstacle")
-
-[node name="Obstacle6" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 45)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle6"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle6"]
-shape = SubResource("BoxShape3D_obstacle")
-
-[node name="Obstacle7" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 1, 20)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle7"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle7"]
-shape = SubResource("BoxShape3D_obstacle")
-
-[node name="Obstacle8" type="StaticBody3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -55)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle8"]
-mesh = SubResource("BoxMesh_obstacle")
-surface_material_override/0 = SubResource("StandardMaterial3D_obstacle")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Obstacle8"]
-shape = SubResource("BoxShape3D_obstacle")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallBack"]
+shape = SubResource("BoxShape3D_wall_short")
 
 [node name="Ramps" type="Node3D" parent="."]
 
 [node name="Ramp1" type="StaticBody3D" parent="Ramps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-mesh = SubResource("PrismMesh_ramp")
+mesh = SubResource("PrismMesh_small_ramp")
 surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp1"]
-shape = SubResource("ConvexPolygonShape3D_ramp")
+shape = SubResource("ConvexPolygonShape3D_small_ramp")
 
 [node name="Ramp2" type="StaticBody3D" parent="Ramps"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 40, 0, 0)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 15, 0, 10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-mesh = SubResource("PrismMesh_ramp")
+mesh = SubResource("PrismMesh_small_ramp")
 surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp2"]
-shape = SubResource("ConvexPolygonShape3D_ramp")
+shape = SubResource("ConvexPolygonShape3D_small_ramp")
 
 [node name="Ramp3" type="StaticBody3D" parent="Ramps"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -35, 0, -40)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -15, 0, 25)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-mesh = SubResource("PrismMesh_ramp")
+mesh = SubResource("PrismMesh_small_ramp")
 surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp3"]
-shape = SubResource("ConvexPolygonShape3D_ramp")
-
-[node name="Ramp4" type="StaticBody3D" parent="Ramps"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -50, 0, 25)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-mesh = SubResource("PrismMesh_ramp")
-surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp4"]
-shape = SubResource("ConvexPolygonShape3D_ramp")
+shape = SubResource("ConvexPolygonShape3D_small_ramp")
 
 [node name="Boulders" type="Node3D" parent="."]
 
 [node name="Boulder1" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.5, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.6, -10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder1"]
-mesh = SubResource("SphereMesh_boulder")
+mesh = SubResource("SphereMesh_small_boulder")
 surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder1"]
-shape = SubResource("SphereShape3D_boulder")
+shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder2" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.6, 5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder2"]
-mesh = SubResource("SphereMesh_boulder")
+mesh = SubResource("SphereMesh_small_boulder")
 surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder2"]
-shape = SubResource("SphereShape3D_boulder")
+shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder3" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 1.5, 40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.6, -25)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder3"]
-mesh = SubResource("SphereMesh_boulder")
+mesh = SubResource("SphereMesh_small_boulder")
 surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder3"]
-shape = SubResource("SphereShape3D_boulder")
+shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder4" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.5, 60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.6, 30)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder4"]
-mesh = SubResource("SphereMesh_boulder")
+mesh = SubResource("SphereMesh_small_boulder")
 surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder4"]
-shape = SubResource("SphereShape3D_boulder")
+shape = SubResource("SphereShape3D_small_boulder")
 
-[node name="Boulder5" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 1.5, -35)
+[node name="Pillars" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder5"]
-mesh = SubResource("SphereMesh_boulder")
-surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
+[node name="Pillar1" type="StaticBody3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.75, -15)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder5"]
-shape = SubResource("SphereShape3D_boulder")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pillars/Pillar1"]
+mesh = SubResource("CylinderMesh_pillar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pillar")
 
-[node name="Boulder6" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 1.5, -15)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar1"]
+shape = SubResource("CylinderShape3D_pillar")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder6"]
-mesh = SubResource("SphereMesh_boulder")
-surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
+[node name="Pillar2" type="StaticBody3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.75, -15)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boulders/Boulder6"]
-shape = SubResource("SphereShape3D_boulder")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pillars/Pillar2"]
+mesh = SubResource("CylinderMesh_pillar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar2"]
+shape = SubResource("CylinderShape3D_pillar")
+
+[node name="Pillar3" type="StaticBody3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.75, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pillars/Pillar3"]
+mesh = SubResource("CylinderMesh_pillar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar3"]
+shape = SubResource("CylinderShape3D_pillar")
+
+[node name="Pillar4" type="StaticBody3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.75, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pillars/Pillar4"]
+mesh = SubResource("CylinderMesh_pillar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar4"]
+shape = SubResource("CylinderShape3D_pillar")
+
+[node name="Pillar5" type="StaticBody3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.75, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pillars/Pillar5"]
+mesh = SubResource("CylinderMesh_pillar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar5"]
+shape = SubResource("CylinderShape3D_pillar")
+
+[node name="Bumps" type="Node3D" parent="."]
+
+[node name="Bump1" type="StaticBody3D" parent="Bumps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bumps/Bump1"]
+mesh = SubResource("BoxMesh_bump")
+surface_material_override/0 = SubResource("StandardMaterial3D_bump")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bumps/Bump1"]
+shape = SubResource("BoxShape3D_bump")
+
+[node name="Bump2" type="StaticBody3D" parent="Bumps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -28)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bumps/Bump2"]
+mesh = SubResource("BoxMesh_bump")
+surface_material_override/0 = SubResource("StandardMaterial3D_bump")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bumps/Bump2"]
+shape = SubResource("BoxShape3D_bump")
+
+[node name="Bump3" type="StaticBody3D" parent="Bumps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -26)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bumps/Bump3"]
+mesh = SubResource("BoxMesh_bump")
+surface_material_override/0 = SubResource("StandardMaterial3D_bump")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bumps/Bump3"]
+shape = SubResource("BoxShape3D_bump")
 
 [node name="MovingObstacles" type="Node3D" parent="."]
 
 [node name="Moving1" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.5, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 15)
 script = ExtResource("2_moving")
-move_distance = 15.0
-move_speed = 2.0
+move_distance = 12.0
+move_speed = 2.5
 move_axis = Vector3(1, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MovingObstacles/Moving1"]
-mesh = SubResource("BoxMesh_moving")
+mesh = SubResource("BoxMesh_small_moving")
 surface_material_override/0 = SubResource("StandardMaterial3D_moving")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingObstacles/Moving1"]
-shape = SubResource("BoxShape3D_moving")
+shape = SubResource("BoxShape3D_small_moving")
 
 [node name="Moving2" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.75, 0)
 script = ExtResource("2_moving")
-move_distance = 20.0
-move_speed = 1.5
+move_distance = 15.0
+move_speed = 1.8
 move_axis = Vector3(0, 0, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MovingObstacles/Moving2"]
-mesh = SubResource("BoxMesh_moving")
+mesh = SubResource("BoxMesh_small_moving")
 surface_material_override/0 = SubResource("StandardMaterial3D_moving")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingObstacles/Moving2"]
-shape = SubResource("BoxShape3D_moving")
+shape = SubResource("BoxShape3D_small_moving")
 
 [node name="Moving3" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.75, -5)
 script = ExtResource("2_moving")
-move_distance = 25.0
+move_distance = 10.0
 move_speed = 3.0
-move_axis = Vector3(1, 0, 0)
+move_axis = Vector3(0, 0, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MovingObstacles/Moving3"]
-mesh = SubResource("BoxMesh_moving")
+mesh = SubResource("BoxMesh_small_moving")
 surface_material_override/0 = SubResource("StandardMaterial3D_moving")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingObstacles/Moving3"]
-shape = SubResource("BoxShape3D_moving")
-
-[node name="Moving4" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1.5, -10)
-script = ExtResource("2_moving")
-move_distance = 18.0
-move_speed = 2.5
-move_axis = Vector3(0, 0, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MovingObstacles/Moving4"]
-mesh = SubResource("BoxMesh_moving")
-surface_material_override/0 = SubResource("StandardMaterial3D_moving")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingObstacles/Moving4"]
-shape = SubResource("BoxShape3D_moving")
+shape = SubResource("BoxShape3D_small_moving")
