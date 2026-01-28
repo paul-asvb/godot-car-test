@@ -1,10 +1,10 @@
 extends RigidBody3D
 
 # Suspension parameters
-const SPRING_STRENGTH = 150.0
-const SPRING_DAMPING = 10.0
-const REST_LENGTH = 0.5
-const WHEEL_RADIUS = 0.2
+const SPRING_STRENGTH = 200.0
+const SPRING_DAMPING = 15.0
+const REST_LENGTH = 0.6
+const WHEEL_RADIUS = 0.35
 
 # Drive parameters
 const ENGINE_FORCE = 40.0
@@ -25,6 +25,13 @@ var current_steer = 0.0
 	$WheelRR
 ]
 
+@onready var wheel_meshes = [
+	$WheelFL/WheelMeshFL,
+	$WheelFR/WheelMeshFR,
+	$WheelRL/WheelMeshRL,
+	$WheelRR/WheelMeshRR
+]
+
 func _physics_process(delta):
 	var steer_input = 0.0
 	if Input.is_action_pressed("ui_left"):
@@ -42,7 +49,12 @@ func _physics_process(delta):
 	
 	for i in range(wheels.size()):
 		var wheel: RayCast3D = wheels[i]
+		var wheel_mesh: MeshInstance3D = wheel_meshes[i]
+		var ray_length = REST_LENGTH + WHEEL_RADIUS
+		
 		if not wheel.is_colliding():
+			# Wheel fully extended when not touching ground
+			wheel_mesh.position.y = -REST_LENGTH
 			continue
 		
 		var contact_point = wheel.get_collision_point()
@@ -50,9 +62,12 @@ func _physics_process(delta):
 		var wheel_pos = wheel.global_position
 		
 		# Suspension force (spring + damper)
-		var ray_length = REST_LENGTH + WHEEL_RADIUS
 		var distance = wheel_pos.distance_to(contact_point)
 		var compression = ray_length - distance
+		
+		# Update wheel mesh position based on suspension compression
+		var wheel_y = -(distance - WHEEL_RADIUS)
+		wheel_mesh.position.y = clamp(wheel_y, -REST_LENGTH, 0)
 		
 		if compression > 0:
 			var wheel_velocity = get_point_velocity(wheel_pos)

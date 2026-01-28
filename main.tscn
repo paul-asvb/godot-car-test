@@ -24,15 +24,15 @@ size = Vector2(200, 200)
 size = Vector3(200, 1, 200)
 
 [sub_resource type="BoxMesh" id="BoxMesh_car"]
-size = Vector3(1, 1, 2)
+size = Vector3(1.6, 0.5, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_car"]
-size = Vector3(1, 1, 2)
+size = Vector3(1.6, 0.5, 2.5)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wheel"]
-top_radius = 0.2
-bottom_radius = 0.2
-height = 0.15
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wheel"]
 albedo_color = Color(0.15, 0.15, 0.15, 1)
@@ -106,38 +106,38 @@ shape = SubResource("BoxShape3D_car")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
 
 [node name="WheelFL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.3, -0.8)
-target_position = Vector3(0, -0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -1.0)
+target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshFL" type="MeshInstance3D" parent="Car/WheelFL"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelFR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.3, -0.8)
-target_position = Vector3(0, -0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -1.0)
+target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshFR" type="MeshInstance3D" parent="Car/WheelFR"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelRL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.3, 0.8)
-target_position = Vector3(0, -0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, 1.0)
+target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshRL" type="MeshInstance3D" parent="Car/WheelRL"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
 [node name="WheelRR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.3, 0.8)
-target_position = Vector3(0, -0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 1.0)
+target_position = Vector3(0, -0.8, 0)
 
 [node name="WheelMeshRR" type="MeshInstance3D" parent="Car/WheelRR"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("CylinderMesh_wheel")
 surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
 
