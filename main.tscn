@@ -44,12 +44,36 @@ size = Vector3(3, 0.8, 4)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_small_ramp"]
 points = PackedVector3Array(-1.5, -0.4, -2, 1.5, -0.4, -2, -1.5, -0.4, 2, 1.5, -0.4, 2, 0, 0.4, -2, 0, 0.4, 2)
 
+[sub_resource type="PrismMesh" id="PrismMesh_medium_ramp"]
+size = Vector3(5, 1.2, 6)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_medium_ramp"]
+points = PackedVector3Array(-2.5, -0.6, -3, 2.5, -0.6, -3, -2.5, -0.6, 3, 2.5, -0.6, 3, 0, 0.6, -3, 0, 0.6, 3)
+
+[sub_resource type="PrismMesh" id="PrismMesh_large_ramp"]
+size = Vector3(8, 1.8, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_large_ramp"]
+points = PackedVector3Array(-4, -0.9, -5, 4, -0.9, -5, -4, -0.9, 5, 4, -0.9, 5, 0, 0.9, -5, 0, 0.9, 5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_steep_ramp"]
+size = Vector3(4, 2.0, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_steep_ramp"]
+points = PackedVector3Array(-2, -1.0, -2.5, 2, -1.0, -2.5, -2, -1.0, 2.5, 2, -1.0, 2.5, 0, 1.0, -2.5, 0, 1.0, 2.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_wide_ramp"]
+size = Vector3(10, 0.6, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wide_ramp"]
+points = PackedVector3Array(-5, -0.3, -2, 5, -0.3, -2, -5, -0.3, 2, 5, -0.3, 2, 0, 0.3, -2, 0, 0.3, 2)
+
 [sub_resource type="SphereMesh" id="SphereMesh_small_boulder"]
-radius = 0.6
-height = 1.2
+radius = 1.2
+height = 2.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_small_boulder"]
-radius = 0.6
+radius = 1.2
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pillar"]
 top_radius = 0.4
@@ -73,10 +97,10 @@ size = Vector3(4, 0.3, 0.8)
 albedo_color = Color(0.8, 0.7, 0.2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_small_moving"]
-size = Vector3(1.5, 1.5, 1.5)
+size = Vector3(1.5, 0.25, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_small_moving"]
-size = Vector3(1.5, 1.5, 1.5)
+size = Vector3(1.5, 0.25, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_car"]
 size = Vector3(1.6, 0.5, 2.5)
@@ -273,10 +297,131 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp3"]
 shape = SubResource("ConvexPolygonShape3D_small_ramp")
 
+[node name="Ramp4" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_medium_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp4"]
+shape = SubResource("ConvexPolygonShape3D_medium_ramp")
+
+[node name="Ramp5" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 25, 0, -20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_large_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp5"]
+shape = SubResource("ConvexPolygonShape3D_large_ramp")
+
+[node name="Ramp6" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -8, 0, 35)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_steep_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp6"]
+shape = SubResource("ConvexPolygonShape3D_steep_ramp")
+
+[node name="Ramp7" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 10, 0, -35)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_wide_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp7"]
+shape = SubResource("ConvexPolygonShape3D_wide_ramp")
+
+[node name="Ramp8" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_medium_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp8"]
+shape = SubResource("ConvexPolygonShape3D_medium_ramp")
+
+[node name="Ramp9" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 5, 0, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_small_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp9"]
+shape = SubResource("ConvexPolygonShape3D_small_ramp")
+
+[node name="Ramp10" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -25, 0, 15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_large_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp10"]
+shape = SubResource("ConvexPolygonShape3D_large_ramp")
+
+[node name="Ramp11" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 20, 0, 30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_steep_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp11"]
+shape = SubResource("ConvexPolygonShape3D_steep_ramp")
+
+[node name="Ramp12" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -5, 0, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_medium_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp12"]
+shape = SubResource("ConvexPolygonShape3D_medium_ramp")
+
+[node name="Ramp13" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 25, 0, 15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_wide_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp13"]
+shape = SubResource("ConvexPolygonShape3D_wide_ramp")
+
+[node name="Ramp14" type="StaticBody3D" parent="Ramps"]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -18, 0, -25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramps/Ramp14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = SubResource("PrismMesh_small_ramp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ramp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramps/Ramp14"]
+shape = SubResource("ConvexPolygonShape3D_small_ramp")
+
 [node name="Boulders" type="Node3D" parent="."]
 
 [node name="Boulder1" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.6, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.6, -10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder1"]
 mesh = SubResource("SphereMesh_small_boulder")
@@ -286,7 +431,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder2" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.6, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.6, 5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder2"]
 mesh = SubResource("SphereMesh_small_boulder")
@@ -296,7 +441,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder3" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.6, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.6, -25)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder3"]
 mesh = SubResource("SphereMesh_small_boulder")
@@ -306,7 +451,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_boulder")
 shape = SubResource("SphereShape3D_small_boulder")
 
 [node name="Boulder4" type="StaticBody3D" parent="Boulders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.6, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.6, 30)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boulders/Boulder4"]
 mesh = SubResource("SphereMesh_small_boulder")
@@ -402,7 +547,7 @@ shape = SubResource("BoxShape3D_bump")
 [node name="MovingObstacles" type="Node3D" parent="."]
 
 [node name="Moving1" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 15)
 script = ExtResource("2_moving")
 move_distance = 12.0
 move_speed = 2.5
@@ -416,7 +561,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_moving")
 shape = SubResource("BoxShape3D_small_moving")
 
 [node name="Moving2" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.125, 0)
 script = ExtResource("2_moving")
 move_distance = 15.0
 move_speed = 1.8
@@ -430,7 +575,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_moving")
 shape = SubResource("BoxShape3D_small_moving")
 
 [node name="Moving3" type="AnimatableBody3D" parent="MovingObstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.75, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.125, -5)
 script = ExtResource("2_moving")
 move_distance = 10.0
 move_speed = 3.0
