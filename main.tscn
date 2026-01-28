@@ -43,8 +43,9 @@ mesh = SubResource("PlaneMesh_ground")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ground")
 
-[node name="Car" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="Car" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+mass = 10.0
 script = ExtResource("1_car")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
@@ -55,3 +56,19 @@ shape = SubResource("BoxShape3D_car")
 
 [node name="Camera3D" type="Camera3D" parent="Car"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
+
+[node name="WheelFL" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.3, -0.8)
+target_position = Vector3(0, -0.7, 0)
+
+[node name="WheelFR" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.3, -0.8)
+target_position = Vector3(0, -0.7, 0)
+
+[node name="WheelRL" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.3, 0.8)
+target_position = Vector3(0, -0.7, 0)
+
+[node name="WheelRR" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.3, 0.8)
+target_position = Vector3(0, -0.7, 0)
