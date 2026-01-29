@@ -3,7 +3,7 @@
     "godot": {
       "command": "node",
       "args": [
-        "/home/letis/git/github/codingsolo/godot-mcp/build/index.js"
+        "~/git/github/codingsolo/godot-mcp/build/index.js"
       ],
       "env": {
         "DEBUG": "true"
