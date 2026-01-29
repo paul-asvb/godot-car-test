@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://mainscene"]
 
-[ext_resource type="Script" uid="uid://gnoim1r0spgm" path="res://car.gd" id="1_car"]
-[ext_resource type="Script" path="res://moving_obstacle.gd" id="2_moving"]
+[ext_resource type="Script" uid="uid://gnoim1r0spgm" path="res://entities/car/car.gd" id="1_car"]
+[ext_resource type="Script" path="res://entities/obstacles/moving_obstacle.gd" id="2_moving"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ground"]
 noise_type = 3

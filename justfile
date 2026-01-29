@@ -14,7 +14,7 @@ clean:
 
 # Run the game locally
 run:
-    godot main.tscn
+    godot scenes/main.tscn
 
 # Watch for file changes and rebuild web version automatically
 watch:

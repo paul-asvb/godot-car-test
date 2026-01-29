@@ -5,19 +5,32 @@ This documentation helps AI agents work effectively in this Godot 4.x project.
 ## Project Structure
 - **Framework**: Godot 4.5+ (uses "Forward Plus" renderer)
 - **Language**: GDScript (`.gd`)
-- **Main Scene**: `main.tscn`
-- **Root**: Flat structure. Assets and scripts are currently in the root directory.
+- **Main Scene**: `scenes/main.tscn`
+
+```
+/                           # Project root
+├── scenes/                 # Scene files (.tscn)
+│   └── main.tscn          # Main gameplay scene
+├── entities/              # Game entities (scripts + related assets)
+│   ├── car/               # Car entity
+│   │   └── car.gd         # Vehicle physics script
+│   └── obstacles/         # Obstacle entities
+│       └── moving_obstacle.gd
+├── project.godot          # Main project configuration
+└── AGENTS.md              # This file
+```
 
 ## Key Files
 - `project.godot`: Main project configuration.
-- `main.tscn`: The primary gameplay scene containing the environment and the car.
-- `car.gd`: Script controlling the vehicle physics (attached to `CharacterBody3D`).
+- `scenes/main.tscn`: The primary gameplay scene containing the environment and the car.
+- `entities/car/car.gd`: Script controlling the vehicle physics (attached to `RigidBody3D`).
+- `entities/obstacles/moving_obstacle.gd`: Script for moving obstacles.
 
 ## Commands
 *These commands assume `godot` is in the system PATH.*
 
 - **Run Project**: `godot` (opens project manager or runs project if arguments provided)
-- **Run Main Scene**: `godot main.tscn`
+- **Run Main Scene**: `godot scenes/main.tscn`
 - **Headless Mode** (useful for CI/testing): `godot --headless`
 
 ## Code Conventions (GDScript)
