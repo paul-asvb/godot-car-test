@@ -2,9 +2,10 @@ extends RigidBody3D
 
 # Suspension parameters
 const SPRING_STRENGTH = 200.0
-const SPRING_DAMPING = 15.0
+const SPRING_DAMPING = 40.0
 const REST_LENGTH = 0.6
 const WHEEL_RADIUS = 0.35
+const WHEEL_SMOOTH_SPEED = 20.0
 
 # Drive parameters
 const ENGINE_FORCE = 40.0
@@ -31,6 +32,10 @@ var current_steer = 0.0
 	$WheelRL/WheelMeshRL,
 	$WheelRR/WheelMeshRR
 ]
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _physics_process(delta):
 	var steer_input = 0.0
@@ -65,9 +70,10 @@ func _physics_process(delta):
 		var distance = wheel_pos.distance_to(contact_point)
 		var compression = ray_length - distance
 		
-		# Update wheel mesh position based on suspension compression
+		# Update wheel mesh position based on suspension compression (smoothed)
 		var wheel_y = -(distance - WHEEL_RADIUS)
-		wheel_mesh.position.y = clamp(wheel_y, -REST_LENGTH, 0)
+		var target_y = clamp(wheel_y, -REST_LENGTH, 0)
+		wheel_mesh.position.y = lerp(wheel_mesh.position.y, target_y, WHEEL_SMOOTH_SPEED * delta)
 		
 		if compression > 0:
 			var wheel_velocity = get_point_velocity(wheel_pos)

@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://caronly"]
+
+[ext_resource type="Script" uid="uid://gnoim1r0spgm" path="res://entities/car/car.gd" id="1_car"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.35, 0.25, 0.15, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = SubResource("StandardMaterial3D_ground")
+size = Vector2(60, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(60, 1, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_car"]
+size = Vector3(1.6, 0.5, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_car"]
+size = Vector3(1.6, 0.5, 2.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wheel"]
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wheel"]
+albedo_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="CarOnly" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="Car" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 10.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.5, 0)
+script = ExtResource("1_car")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
+mesh = SubResource("BoxMesh_car")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
+shape = SubResource("BoxShape3D_car")
+
+[node name="Camera3D" type="Camera3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 5)
+
+[node name="WheelFL" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.25, -1.0)
+target_position = Vector3(0, -0.8, 0)
+
+[node name="WheelMeshFL" type="MeshInstance3D" parent="Car/WheelFL"]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_wheel")
+surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
+
+[node name="WheelFR" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.25, -1.0)
+target_position = Vector3(0, -0.8, 0)
+
+[node name="WheelMeshFR" type="MeshInstance3D" parent="Car/WheelFR"]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_wheel")
+surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
+
+[node name="WheelRL" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.25, 1.0)
+target_position = Vector3(0, -0.8, 0)
+
+[node name="WheelMeshRL" type="MeshInstance3D" parent="Car/WheelRL"]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_wheel")
+surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
+
+[node name="WheelRR" type="RayCast3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.25, 1.0)
+target_position = Vector3(0, -0.8, 0)
+
+[node name="WheelMeshRR" type="MeshInstance3D" parent="Car/WheelRR"]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_wheel")
+surface_material_override/0 = SubResource("StandardMaterial3D_wheel")
