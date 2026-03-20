@@ -161,23 +161,24 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PHYS-01 through PHYS-05 | TBD | Pending |
-| DRIFT-01 through DRIFT-08 | TBD | Pending |
-| VFX-01 through VFX-06 | TBD | Pending |
-| TRACK-01 through TRACK-07 | TBD | Pending |
-| LAP-01 through LAP-06 | TBD | Pending |
-| UI-01 through UI-08 | TBD | Pending |
-| SPLIT-01 through SPLIT-09 | TBD | Pending |
-| AUDIO-01 through AUDIO-05 | TBD | Pending |
-| ITEM-01 through ITEM-10 | TBD | Pending |
-| MENU-01 through MENU-05 | TBD | Pending |
-| TRACK2-01 through TRACK2-03 | TBD | Pending |
-| POLISH-01 through POLISH-05 | TBD | Pending |
+| PHYS-01 through PHYS-05 | Phase 1 | Pending |
+| DRIFT-01 through DRIFT-08 | Phase 2 | Pending |
+| VFX-01 through VFX-06 | Phase 3 | Pending |
+| TRACK-01 through TRACK-07 | Phase 4 | Pending |
+| LAP-01 through LAP-06 | Phase 5 | Pending |
+| UI-01 through UI-08 | Phase 6 | Pending |
+| AUDIO-01 through AUDIO-05 | Phase 7 | Pending |
+| SPLIT-01 through SPLIT-07 | Phase 8 | Pending |
+| SPLIT-08 through SPLIT-09 | Phase 10 | Pending |
+| ITEM-01 through ITEM-10 | Phase 9 | Pending |
+| MENU-01 through MENU-05 | Phase 12 | Pending |
+| TRACK2-01 through TRACK2-03 | Phase 11 | Pending |
+| POLISH-01 through POLISH-05 | Phase 12 | Pending |
 
 **Coverage:**
 - v1 requirements: 71 total
-- Mapped to phases: 0 (roadmap not yet created)
-- Unmapped: 71 ⚠️
+- Mapped to phases: 71
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-20*
