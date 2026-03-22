@@ -1,6 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://mainscene"]
 
 [ext_resource type="Script" uid="uid://gnoim1r0spgm" path="res://entities/car/car.gd" id="1_car"]
+[ext_resource type="Script" path="res://entities/car/arcade_car.gd" id="1_arcade_car"]
 [ext_resource type="Script" path="res://entities/obstacles/moving_obstacle.gd" id="2_moving"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ground"]
@@ -168,12 +169,9 @@ mesh = SubResource("PlaneMesh_ground")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ground")
 
-[node name="Car" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mass = 10.0
-center_of_mass_mode = 1
-center_of_mass = Vector3(0, -0.5, 0)
-script = ExtResource("1_car")
+[node name="Car" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_arcade_car")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
 mesh = SubResource("BoxMesh_car")
