@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "read": {
+      "/home/leto/git/github/paul-asvb/godot-car-test/.opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "/home/leto/git/github/paul-asvb/godot-car-test/.opencode/get-shit-done/*": "allow"
+    }
+  }
+}
